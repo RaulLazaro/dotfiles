@@ -8,3 +8,8 @@
     ~/.config/Code/User/settings.json: VSCode/settings.json
     ~/.config/Code/User/snippets: VSCode/snippets
 
+- shell:
+    - [git submodule update --init --recursive, Installing submodules]
+    - [sudo chsh -s $(which zsh), Making zsh the default shell]
+    - [cat VSCode/extensions.txt | xargs -L 1 code --install-extension, Installing VSCode extensions]
+    - [code --list-extensions > VSCode/extensions.txt, Saving VSCode extensions]
