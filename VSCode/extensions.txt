@@ -1,0 +1,12 @@
+bradlc.vscode-tailwindcss
+CoenraadS.bracket-pair-colorizer
+esbenp.prettier-vscode
+formulahendry.auto-rename-tag
+GitHub.vscode-pull-request-github
+hbenl.vscode-jasmine-test-adapter
+hbenl.vscode-test-explorer
+msjsdiag.debugger-for-chrome
+oderwat.indent-rainbow
+PKief.material-icon-theme
+raagh.angular-karma-test-explorer
+SonarSource.sonarlint-vscode
