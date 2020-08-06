@@ -10,5 +10,11 @@
     "terminal.integrated.shell.linux": "/usr/bin/zsh",
     "terminal.integrated.fontFamily": "MesloLGS NF",
     "sonarlint.ls.javaHome": "/home/raul/.vscode/extensions/sonarsource.sonarlint_managed-jre/jre/jdk-11.0.8+10-jre",
-    "diffEditor.renderSideBySide": false
+    "diffEditor.renderSideBySide": false,
+    "[javascript]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[json]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    }
 }
