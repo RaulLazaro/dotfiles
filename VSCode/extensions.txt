@@ -1,3 +1,4 @@
+Angular.ng-template
 bradlc.vscode-tailwindcss
 CoenraadS.bracket-pair-colorizer
 esbenp.prettier-vscode
@@ -10,3 +11,4 @@ oderwat.indent-rainbow
 PKief.material-icon-theme
 raagh.angular-karma-test-explorer
 SonarSource.sonarlint-vscode
+stylelint.vscode-stylelint
