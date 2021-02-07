@@ -6,3 +6,5 @@
 [user]
 	name = Raúl Lázaro Sánchez
 	email = rlazaro@bcn3d.com
+[core]
+	editor = nano
