@@ -80,6 +80,8 @@ plugins=(
 	npm
 	zsh-autosuggestions
 	zsh-syntax-highlighting
+	zsh-nvm
+	pyenv
 )
 
 source $ZSH/oh-my-zsh.sh
