@@ -1,3 +1,7 @@
+- defaults:
+    link:
+        force: true
+
 - clean: ['~']
 
 - link:
@@ -7,8 +11,11 @@
     ~/.p10k.zsh: p10k.zsh
 
 - shell:
-    - [sudo apt-get install zsh, Instal ZSH]
-    - [sudo apt-get install git-core, Install git-core]
-    - [sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)", Install Oh My ZSH]
-    - [chsh -s $(which zsh), Change shell to ZSH]
-    - [git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k, Instal Powerlevel10k]
+    - [sudo apt-get install -y zsh, Instal ZSH]
+    - [sudo apt-get install -y git-core, Install git-core]
+    - [sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended, Install Oh My ZSH]
+    - [git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ~/.oh-my-zsh/custom/themes/powerlevel10k, Instal Powerlevel10k]
+    - [git clone https://github.com/zsh-users/zsh-autosuggestions ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions]
+    - [git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting]
+    - [git clone https://github.com/lukechilds/zsh-nvm ~/.oh-my-zsh/custom/plugins/zsh-nvm]
+    - [git clone https://github.com/mattberther/zsh-pyenv ~/.oh-my-zsh/custom/plugins/zsh-pyenv, Install pyenv]

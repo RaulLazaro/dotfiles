@@ -81,7 +81,7 @@ plugins=(
 	zsh-autosuggestions
 	zsh-syntax-highlighting
 	zsh-nvm
-	pyenv
+	zsh-pyenv
 )
 
 source $ZSH/oh-my-zsh.sh
