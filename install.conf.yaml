@@ -1,3 +1,18 @@
+- defaults:
+    link:
+        force: true
+
+- shell:
+    - [sudo apt-get install -y zsh, Instal ZSH]
+    - [sudo apt-get install -y git-core, Install git-core]
+    - [sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" --unattended, Install Oh My ZSH]
+    - [sudo chsh -s $(which zsh) raul]
+    - [git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ~/.oh-my-zsh/custom/themes/powerlevel10k, Install Powerlevel10k]
+    - [git clone https://github.com/zsh-users/zsh-autosuggestions ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions]
+    - [git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting]
+    - [git clone https://github.com/lukechilds/zsh-nvm ~/.oh-my-zsh/custom/plugins/zsh-nvm]
+    - [git clone https://github.com/mattberther/zsh-pyenv ~/.oh-my-zsh/custom/plugins/zsh-pyenv, Install pyenv]
+
 - clean: ['~']
 
 - link:
@@ -5,9 +20,3 @@
     ~/.gitconfig: gitconfig
     ~/.zshrc: zshrc
     ~/.p10k.zsh: p10k.zsh
-    ~/.config/Code/User/settings.json: VSCode/settings.json
-    ~/.config/Code/User/snippets: VSCode/snippets
-
-- shell:
-    - [cat VSCode/extensions.txt | xargs -L 1 code --install-extension, Installing VSCode extensions]
-    - [code --list-extensions > VSCode/extensions.txt, Saving VSCode extensions]

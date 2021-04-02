@@ -5,4 +5,6 @@
 	required = true
 [user]
 	name = Raúl Lázaro Sánchez
-	email = rlazaro@bcn3d.com
+	email = contact@raullazaro.com
+[core]
+	editor = nano
