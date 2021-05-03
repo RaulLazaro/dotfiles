@@ -8,3 +8,4 @@
 	email = contact@raullazaro.com
 [core]
 	editor = nano
+	autocrlf = input
