@@ -3,7 +3,7 @@
         force: true
 
 - shell:
-    - [sudo apt-get install -y zsh, Instal ZSH]
+    - [sudo apt-get install -y zsh, Instal ZSH, Install ZSH]
     - [sudo apt-get install -y git-core, Install git-core]
     - [sudo apt-get install -y git-lfs]
     - [git lfs install, Install git lfs]
@@ -14,6 +14,8 @@
     - [git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting]
     - [git clone https://github.com/lukechilds/zsh-nvm ~/.oh-my-zsh/custom/plugins/zsh-nvm]
     - [git clone https://github.com/mattberther/zsh-pyenv ~/.oh-my-zsh/custom/plugins/zsh-pyenv, Install pyenv]
+    - [wget http://github.com/nullpo-head/WSL-Hello-sudo/releases/latest/download/release.tar.gz ; tar xvf release.tar.gz ; cd release ; ./install.sh, Install WSL Hello sudo]
+    - [rm -r release.tar.gz ; rm -r release, Clean]
 
 - clean: ['~']
 
@@ -22,3 +24,4 @@
     ~/.gitconfig: gitconfig
     ~/.zshrc: zshrc
     ~/.p10k.zsh: p10k.zsh
+    ~/.nvmrc: nvmrc
