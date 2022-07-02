@@ -125,3 +125,23 @@ fi
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+autoload -U add-zsh-hook
+
+run_nrm() {
+	current=$(nrm current)
+	if [[ "$PWD" = */work* ]]; then 
+		if [[ "$current" != devo ]] ; then
+			nrm use devo;
+		fi
+	else
+		if [[ "$current" != "" ]] ; then
+			nrm use npm;
+		fi
+	fi
+}
+
+run_nrm
+
+add-zsh-hook preexec run_nrm
+add-zsh-hook precmd run_nrm
