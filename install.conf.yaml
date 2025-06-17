@@ -13,8 +13,7 @@
     - [git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ~/.oh-my-zsh/custom/themes/powerlevel10k, Install Powerlevel10k]
     - [git clone https://github.com/zsh-users/zsh-autosuggestions ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions]
     - [git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting]
-    - [git clone https://github.com/lukechilds/zsh-nvm ~/.oh-my-zsh/custom/plugins/zsh-nvm]
-    - [git clone https://github.com/mattberther/zsh-pyenv ~/.oh-my-zsh/custom/plugins/zsh-pyenv, Install pyenv]
+    - [curl https://get.volta.sh | bash, Install volta]
     - [cd ~ ; wget http://github.com/nullpo-head/WSL-Hello-sudo/releases/latest/download/release.tar.gz ; tar xvf release.tar.gz ; cd release, Install WSL Hello sudo]
 
 - clean: ['~']
@@ -24,4 +23,3 @@
     ~/.gitconfig: gitconfig
     ~/.zshrc: zshrc
     ~/.p10k.zsh: p10k.zsh
-    ~/.nvmrc: nvmrc
