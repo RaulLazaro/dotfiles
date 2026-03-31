@@ -7,7 +7,7 @@
 	name = Raúl Lázaro Sánchez
 	email = contact@raullazaro.com
 [core]
-	editor = nano
+	editor = code --wait
 	autocrlf = input
 [includeIf "gitdir:~/work/"]
 path = ~/.gitconfig-work
