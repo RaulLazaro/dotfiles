@@ -116,5 +116,9 @@ if ! shopt -oq posix; then
   fi
 fi
 
-export VOLTA_HOME="$HOME/.volta"
-export PATH="$VOLTA_HOME/bin:$PATH"
+# fnm — https://github.com/Schniz/fnm
+FNM_DIR="${XDG_DATA_HOME:-$HOME/.local/share}/fnm"
+if [ -d "$FNM_DIR" ]; then
+  export PATH="$FNM_DIR:$PATH"
+  eval "$(fnm env --shell bash)"
+fi

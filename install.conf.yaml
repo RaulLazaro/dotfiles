@@ -13,7 +13,7 @@
     - [git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ~/.oh-my-zsh/custom/themes/powerlevel10k, Install Powerlevel10k]
     - [git clone https://github.com/zsh-users/zsh-autosuggestions ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions]
     - [git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting]
-    - [curl https://get.volta.sh | bash, Install volta]
+    - [curl -fsSL https://fnm.vercel.app/install | bash -s -- --skip-shell, Install fnm]
     - [cd ~ ; wget http://github.com/nullpo-head/WSL-Hello-sudo/releases/latest/download/release.tar.gz ; tar xvf release.tar.gz ; cd release, Install WSL Hello sudo]
 
 - clean: ['~']

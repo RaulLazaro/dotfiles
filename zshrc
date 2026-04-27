@@ -75,17 +75,21 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-export NVM_AUTO_USE=true
-
 plugins=(
 	git
 	npm
 	zsh-autosuggestions
 	zsh-syntax-highlighting
-	volta
+	fnm
 )
 
+# fnm binary on PATH before oh-my-zsh (fnm plugin adds zsh completions)
+FNM_DIR="${XDG_DATA_HOME:-$HOME/.local/share}/fnm"
+[[ -d "$FNM_DIR" ]] && export PATH="$FNM_DIR:$PATH"
+
 source $ZSH/oh-my-zsh.sh
+
+command -v fnm >/dev/null && eval "$(fnm env --use-on-cd --shell zsh)"
 
 # User configuration
 
@@ -121,6 +125,7 @@ if [ $TILIX_ID ] || [ $VTE_VERSION ]; then
         source /etc/profile.d/vte.sh
 fi
 
-export VOLTA_HOME="$HOME/.volta"
-export PATH="$VOLTA_HOME/bin:$PATH"
 export PATH="$HOME/.local/bin:$PATH"
+
+export PATH="$PATH:/snap/bin"
+export AWS_VAULT_BACKEND=file
