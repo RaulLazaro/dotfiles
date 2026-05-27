@@ -78,20 +78,26 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 plugins=(
 	git
 	npm
+	gh
 	zsh-autosuggestions
 	zsh-syntax-highlighting
-	fnm
 )
 
-# fnm binary on PATH before oh-my-zsh (fnm plugin adds zsh completions)
-FNM_DIR="${XDG_DATA_HOME:-$HOME/.local/share}/fnm"
-[[ -d "$FNM_DIR" ]] && export PATH="$FNM_DIR:$PATH"
+source "${ZSH}/oh-my-zsh.sh"
 
-source $ZSH/oh-my-zsh.sh
-
-command -v fnm >/dev/null && eval "$(fnm env --use-on-cd --shell zsh)"
+if command -v fnm >/dev/null; then
+	eval "$(fnm env --use-on-cd --shell zsh)"
+	# Tab completion for `fnm` (official generator; keeps a single `fnm env`, no OMZ plugin)
+	source <(fnm completions --shell zsh)
+fi
 
 # User configuration
+
+# GitHub CLI
+alias prs='gh pr list'
+alias prc='gh pr create'
+alias prv='gh pr view --web'
+alias prm='gh pr merge'
 
 # export MANPATH="/usr/local/man:$MANPATH"
 
@@ -125,7 +131,3 @@ if [ $TILIX_ID ] || [ $VTE_VERSION ]; then
         source /etc/profile.d/vte.sh
 fi
 
-export PATH="$HOME/.local/bin:$PATH"
-
-export PATH="$PATH:/snap/bin"
-export AWS_VAULT_BACKEND=file

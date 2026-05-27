@@ -2,6 +2,10 @@
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples
 
+DOTFILES_DIR="${DOTFILES_DIR:-$HOME/dotfiles}"
+[ -f "$DOTFILES_DIR/fnm-path.sh" ] && . "$DOTFILES_DIR/fnm-path.sh"
+[ -f "$DOTFILES_DIR/env.sh" ] && . "$DOTFILES_DIR/env.sh"
+
 # If not running interactively, don't do anything
 case $- in
     *i*) ;;
@@ -116,9 +120,5 @@ if ! shopt -oq posix; then
   fi
 fi
 
-# fnm — https://github.com/Schniz/fnm
-FNM_DIR="${XDG_DATA_HOME:-$HOME/.local/share}/fnm"
-if [ -d "$FNM_DIR" ]; then
-  export PATH="$FNM_DIR:$PATH"
-  eval "$(fnm env --shell bash)"
-fi
+# fnm — version switching in interactive bash
+command -v fnm >/dev/null && eval "$(fnm env --shell bash)"

@@ -1,0 +1,4 @@
+# Work identity — applied when committing inside ~/work/
+# Actual file lives in your dotfiles clone (gitignored); ~/.gitconfig-work is a symlink.
+[user]
+	email = YOUR_WORK_EMAIL@example.com

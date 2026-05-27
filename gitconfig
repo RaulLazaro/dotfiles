@@ -6,8 +6,23 @@
 [user]
 	name = Raúl Lázaro Sánchez
 	email = contact@raullazaro.com
+	signingkey = ~/.ssh/id_ed25519.pub
 [core]
-	editor = code --wait
+	editor = cursor --wait
 	autocrlf = input
+[gpg]
+	format = ssh
+[commit]
+	gpgsign = true
+[gpg "ssh"]
+	allowedSignersFile = ~/.ssh/allowed_signers
+[url "git@github.com:"]
+	insteadOf = https://github.com/
+[credential "https://github.com"]
+	helper = 
+	helper = !/usr/bin/env gh auth git-credential
+[credential "https://gist.github.com"]
+	helper = 
+	helper = !/usr/bin/env gh auth git-credential
 [includeIf "gitdir:~/work/"]
-path = ~/.gitconfig-work
+	path = ~/.gitconfig-work
