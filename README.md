@@ -67,24 +67,25 @@ Sourced from `zshenv` (every zsh), `profile` (login shells), and `bashrc` (inter
 
 ## Git identity (work vs personal)
 
-- **Default (personal):** `contact@raullazaro.com` in `gitconfig`
-- **Work:** email in `~/.gitconfig-work` (local), auto-applied inside `~/work/`.
+- **Default (personal):** name and email in `gitconfig`
+- **Work:** email in `gitconfig-work` (gitignored in the clone), applied inside `~/work/` via `includeIf`.
   `./install` refreshes `~/.ssh/allowed_signers` for that email (see above).
 
 ```zsh
-# Same file via symlink — path in the clone is convenient in the IDE
-${EDITOR:-cursor} ~/dotfiles/gitconfig-work
+# Same file as ~/.gitconfig-work (symlink); edit from the clone if you prefer
+${EDITOR:-cursor} "${DOTFILES_DIR:-$HOME/dotfiles}/gitconfig-work"
 
-cd ~/work/your-repo && git config user.email
+mkdir -p ~/work
+cd ~/work/some-repo && git config user.email
 ```
 
 ### Work repos layout
 
-Keep all work repositories under `~/work/`:
+`gitconfig` includes `gitconfig-work` only under `~/work/`. Keep work clones there so commits pick up the work email automatically:
 
 ```zsh
 mkdir -p ~/work
-mv ~/influencity ~/work/influencity   # one-time migration
+# git clone git@github.com:org/repo.git ~/work/repo
 ```
 
 ## Re-run install
