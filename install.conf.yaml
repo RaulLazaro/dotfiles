@@ -12,6 +12,7 @@
     - [bash scripts/ensure-oh-my-zsh-and-plugins.sh, Oh My Zsh + Powerlevel10k + plugins (idempotent)]
     - [sudo chsh -s $(which zsh) $(whoami)]
     - [curl -fsSL https://fnm.vercel.app/install | bash -s -- --skip-shell, Install fnm]
+    - [curl -fsSL https://opencode.ai/install | bash, Install opencode]
     - [sudo apt-get install -y gh, Install GitHub CLI]
     - [bash scripts/install-wsl-hello-sudo.sh, WSL Hello sudo (WSL only, idempotent)]
     - [bash scripts/ensure-gitconfig-work.sh, gitconfig-work in repo + migrate old ~/.gitconfig-work if plain file]
