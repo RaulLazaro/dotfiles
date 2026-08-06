@@ -1,2 +1,3 @@
 # Local overrides (not versioned)
 gitconfig-work
+.worktrees/
