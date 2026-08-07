@@ -3,21 +3,7 @@
         force: true
 
 - shell:
-    - [sudo apt-get update -qq, apt update]
-    - [sudo apt-get install -y zsh openssh-client curl wget, "zsh, openssh-client, curl, wget"]
-    - [sudo apt-get install -y git-core, Install git-core]
-    - [curl -s https://packagecloud.io/install/repositories/github/git-lfs/script.deb.sh | sudo bash]
-    - [sudo apt-get install -y git-lfs]
-    - [git lfs install, Install git lfs]
-    - [bash scripts/ensure-oh-my-zsh-and-plugins.sh, Oh My Zsh + Powerlevel10k + plugins (idempotent)]
-    - [sudo chsh -s $(which zsh) $(whoami)]
-    - [curl -fsSL https://fnm.vercel.app/install | bash -s -- --skip-shell, Install fnm]
-    - [curl -fsSL https://opencode.ai/install | bash, Install opencode]
-    - [sudo apt-get install -y gh, Install GitHub CLI]
-    - [bash scripts/install-wsl-hello-sudo.sh, WSL Hello sudo (WSL only, idempotent)]
-    - [bash scripts/ensure-gitconfig-work.sh, gitconfig-work in repo + migrate old ~/.gitconfig-work if plain file]
-
-- clean: ['~']
+    - [bash scripts/install-extras.sh, "Optional extras (gitconfig-work, omz, wsl-hello, system pkgs, fnm, opencode, gh) - non-fatal"]
 
 - link:
     ~/.bashrc: bashrc
@@ -29,4 +15,4 @@
     ~/.p10k.zsh: p10k.zsh
 
 - shell:
-    - [bash scripts/bootstrap-git-ssh-signing.sh, SSH key for git + allowed_signers (personal + work email)]
+    - [bash scripts/bootstrap-git-ssh-signing.sh, "SSH key for git + allowed_signers (personal + work email)"]

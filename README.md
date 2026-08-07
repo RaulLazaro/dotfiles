@@ -18,6 +18,11 @@ The file is listed in `.gitignore` so it is never committed. Edit it with your w
 If you still have a **plain file** at `~/.gitconfig-work` from an older setup, `./install` moves it
 once into `gitconfig-work` in the repo, then replaces the home path with the symlink.
 
+The install **never cleans `$HOME`**: files not listed above are left untouched. If you want dotbot's
+`clean` behaviour (delete unmanaged files/symlinks from `$HOME`), add a `- clean: ['~']` task to
+`install.conf.yaml` — note that it deletes every loose file it does not manage
+(e.g. `~/.bash_aliases`, `~/.inputrc`, `~/.gitignore_global`).
+
 ## What gets linked
 
 | File in `$HOME` | Source |
@@ -32,10 +37,16 @@ once into `gitconfig-work` in the repo, then replaces the home path with the sym
 
 | File in `$HOME` | Source | Notes |
 | ----- | ------ | ------ |
-| Work git include | `scripts/ensure-gitconfig-work.sh` | Repo file `gitconfig-work` (gitignored); migrates old plain `~/.gitconfig-work` |
-| Oh My Zsh stack | `scripts/ensure-oh-my-zsh-and-plugins.sh` | Idempotent; see **Re-run install** |
-| WSL Hello sudo | `scripts/install-wsl-hello-sudo.sh` | WSL only; see **Re-run install** |
+| Work git include | `install-extras.sh` → `ensure-gitconfig-work.sh` | Repo file `gitconfig-work` (gitignored); migrates old plain `~/.gitconfig-work` |
+| Oh My Zsh stack | `install-extras.sh` → `ensure-oh-my-zsh-and-plugins.sh` | Idempotent; skipped if already present |
+| WSL Hello sudo | `install-extras.sh` → `install-wsl-hello-sudo.sh` | No-op outside WSL |
 | SSH git signing | `scripts/bootstrap-git-ssh-signing.sh` | Runs on `./install`; see below |
+
+`scripts/install-extras.sh` runs first as a single **non-fatal** task: every section is guarded, so a
+missing `sudo`/`apt-get`, missing network or an already-installed tool never aborts the install — the
+symlinks and SSH signing always run. On machines without sudo (containers, restricted users) system
+packages and `chsh` are skipped with a warning; fnm, opencode and gh are installed as static binaries
+under `~/.local/share/fnm`, `~/.opencode/bin` and `~/.local/bin` (all on `PATH` via `env.sh`).
 
 ## SSH key and `allowed_signers`
 
@@ -90,10 +101,11 @@ mkdir -p ~/work
 
 ## Re-run install
 
-`./install` is safe to re-run: dotbot updates symlinks and re-runs shell tasks.
-The work git file `gitconfig-work` in your clone is **not** overwritten if it exists; adjust the symlink
-when you change clone path.
-Some tasks (oh-my-zsh, fnm, etc.) may fail if already installed — that is expected.
+`./install` is safe to re-run: dotbot updates symlinks, re-runs the extras script (idempotent —
+already-installed tools are skipped) and refreshes `allowed_signers`. The work git file `gitconfig-work`
+in your clone is **not** overwritten if it exists; adjust the symlink when you change clone path.
+No section can abort the install: without sudo, system packages and `chsh` are skipped with a warning
+and everything else still runs.
 
 The Oh My Zsh step runs `scripts/ensure-oh-my-zsh-and-plugins.sh` (idempotent: skips install if
 `~/.oh-my-zsh` exists, clones themes/plugins only when missing).

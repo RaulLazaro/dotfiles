@@ -130,7 +130,3 @@ alias prm='gh pr merge'
 if [ $TILIX_ID ] || [ $VTE_VERSION ]; then
         source /etc/profile.d/vte.sh
 fi
-
-
-# opencode
-export PATH=/home/raul/.opencode/bin:$PATH
