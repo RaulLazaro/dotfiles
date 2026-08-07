@@ -26,3 +26,7 @@
 	helper = !/usr/bin/env gh auth git-credential
 [includeIf "gitdir:~/work/"]
 	path = ~/.gitconfig-work
+[rerere]
+	enabled = true
+[remote]
+	pushDefault = origin
