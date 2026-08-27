@@ -101,6 +101,13 @@ else
   fi
 fi
 
+# --- npm GitHub Packages -------------------------------------------------------
+if bash "${ROOT}/scripts/setup-npm-github-packages.sh"; then
+  log "npm: GitHub Packages configured"
+else
+  warn "npm: GitHub Packages setup failed (continuing)"
+fi
+
 # --- GitHub CLI ---------------------------------------------------------------
 # Static binary from the official releases (the Debian/Ubuntu apt package is
 # either missing or years behind), falling back to apt when downloads fail.
