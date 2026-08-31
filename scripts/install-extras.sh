@@ -143,30 +143,25 @@ fi
 # --- gh stack extension (stacked PRs) ----------------------------------------
 if has gh || [ -x "$HOME/.local/bin/gh" ]; then
   _gh_bin="$(command -v gh 2>/dev/null || echo "$HOME/.local/bin/gh")"
-  # Ensure GH_TOKEN is available for the extension installer
-  if [ -z "${GH_TOKEN:-}" ]; then
-    for _rc in "$HOME/.bashrc" "$HOME/.zshrc"; do
-      [ -f "$_rc" ] || continue
-      # shellcheck disable=SC1090
-      _gh_token_tmp="$(. "$_rc" 2>/dev/null && echo "${GH_TOKEN:-}")"
-      [ -n "$_gh_token_tmp" ] && export GH_TOKEN="$_gh_token_tmp" && break
-    done
-    unset _rc _gh_token_tmp
-  fi
   # Remove stale duplicate 'stack' extension dir (leftover from manual install)
   if [ -d "$HOME/.local/share/gh/extensions/stack" ]; then
     rm -rf "$HOME/.local/share/gh/extensions/stack" \
       && log "gh-stack: removed stale 'stack' extension directory" \
       || warn "gh-stack: could not remove stale 'stack' directory (continuing)"
   fi
-  if "$_gh_bin" extension list 2>/dev/null | grep -q 'github/gh-stack'; then
-    skip "gh-stack: already installed"
-  else
-    if "$_gh_bin" extension install github/gh-stack 2>/dev/null; then
-      log "gh-stack: installed"
+  # Check if gh is authenticated (via hosts.yml or GH_TOKEN)
+  if "$_gh_bin" auth status >/dev/null 2>&1; then
+    if "$_gh_bin" extension list 2>/dev/null | grep -q 'github/gh-stack'; then
+      skip "gh-stack: already installed"
     else
-      warn "gh-stack: install failed (continuing)"
+      if "$_gh_bin" extension install github/gh-stack 2>/dev/null; then
+        log "gh-stack: installed"
+      else
+        warn "gh-stack: install failed (continuing)"
+      fi
     fi
+  else
+    warn "gh-stack: gh not authenticated, skipping extension install (run 'gh auth login' first)"
   fi
 else
   skip "gh-stack: gh not available"
