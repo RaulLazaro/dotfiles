@@ -18,12 +18,6 @@
 	allowedSignersFile = ~/.ssh/allowed_signers
 [url "git@github.com:"]
 	insteadOf = https://github.com/
-[credential "https://github.com"]
-	helper = 
-	helper = !/usr/bin/env gh auth git-credential
-[credential "https://gist.github.com"]
-	helper = 
-	helper = !/usr/bin/env gh auth git-credential
 [includeIf "gitdir:~/work/"]
 	path = ~/.gitconfig-work
 [rerere]
