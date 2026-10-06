@@ -101,11 +101,12 @@ else
   fi
 fi
 
-# --- npm GitHub Packages -------------------------------------------------------
-if bash "${ROOT}/scripts/setup-npm-github-packages.sh"; then
-  log "npm: GitHub Packages configured"
+# --- npm (corepack) -----------------------------------------------------------
+# ~/.npmrc is managed via dotbot link (npmrc); do not overwrite here.
+if bash "${ROOT}/scripts/ensure-npm-corepack.sh"; then
+  log "npm: corepack prepared"
 else
-  warn "npm: GitHub Packages setup failed (continuing)"
+  warn "npm: corepack setup failed (continuing)"
 fi
 
 # --- GitHub CLI ---------------------------------------------------------------

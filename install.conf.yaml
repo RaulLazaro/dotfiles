@@ -9,6 +9,7 @@
     ~/.bashrc: bashrc
     ~/.gitconfig: gitconfig
     ~/.gitconfig-work: gitconfig-work
+    ~/.npmrc: npmrc
     ~/.profile: profile
     ~/.zshrc: zshrc
     ~/.zshenv: zshenv

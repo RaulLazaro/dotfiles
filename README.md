@@ -33,6 +33,7 @@ The install **never cleans `$HOME`**: files not listed above are left untouched.
 | `~/.profile` | `profile` |
 | `~/.gitconfig` | `gitconfig` |
 | `~/.gitconfig-work` | `gitconfig-work` |
+| `~/.npmrc` | `npmrc` |
 | `~/.p10k.zsh` | `p10k.zsh` |
 
 | File in `$HOME` | Source | Notes |
@@ -75,6 +76,23 @@ If you add GitHub as a signing key, upload `~/.ssh/id_ed25519.pub` in GitHub **S
 - `env.sh` — shared env vars (`AWS_VAULT_BACKEND`, PATH)
 
 Sourced from `zshenv` (every zsh), `profile` (login shells), and `bashrc` (interactive bash).
+
+## Node.js (fnm) and npm
+
+Node versions are managed with [fnm](https://github.com/Schniz/fnm) (`fnm env --use-on-cd` in `zshrc`).
+`~/.npmrc` is symlinked from `npmrc` ([security defaults](https://github.com/lirantal/npm-security-best-practices)).
+
+`./install` runs `scripts/ensure-npm-corepack.sh`, which upgrades npm via corepack **only when**
+the bundled version is below **11.10** (`allow-git` / `min-release-age` need npm >= 11.10).
+Node 24+ already ships npm 11.x and is left untouched. `zshrc` runs `corepack enable` on shell
+startup.
+
+Check after install:
+
+```zsh
+fnm use 22.22.0
+npm -v   # should be 11.x
+```
 
 ## Git identity (work vs personal)
 

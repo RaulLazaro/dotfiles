@@ -1,0 +1,12 @@
+# GitHub Packages — @raullazaro scope
+# Reads via SSH (no token needed), publish requires token with write:packages
+@raullazaro:registry=https://npm.pkg.github.com
+# For publishing, set token: npm config set //npm.pkg.github.com/:_authToken YOUR_TOKEN
+
+# https://github.com/lirantal/npm-security-best-practices
+# allow-git and min-release-age need npm >= 11.10 (see README)
+
+ignore-scripts=true
+allow-git=root
+min-release-age=7
+save-exact=true

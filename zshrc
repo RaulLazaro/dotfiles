@@ -91,6 +91,11 @@ if command -v fnm >/dev/null; then
 	source <(fnm completions --shell zsh)
 fi
 
+if command -v corepack >/dev/null; then
+	corepack enable 2>/dev/null
+	npm() { command corepack npm "$@"; }
+fi
+
 # User configuration
 
 # GitHub CLI
