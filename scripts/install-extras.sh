@@ -101,12 +101,12 @@ else
   fi
 fi
 
-# --- npm (corepack) -----------------------------------------------------------
+# --- npm (Node 22 → bundled 10.9.x, no corepack npm 11) ----------------------
 # ~/.npmrc is managed via dotbot link (npmrc); do not overwrite here.
 if bash "${ROOT}/scripts/ensure-npm-corepack.sh"; then
-  log "npm: corepack prepared"
+  log "npm: Node 22 bundled npm policy applied"
 else
-  warn "npm: corepack setup failed (continuing)"
+  warn "npm: bundled npm setup failed (continuing)"
 fi
 
 # --- GitHub CLI ---------------------------------------------------------------

@@ -1,7 +1,6 @@
 #!/usr/bin/env bash
-# Set up npm for GitHub Packages (@raullazaro scope).
-# Uses SSH for reading (no token needed for private repos with SSH access).
-# Token with write:packages scope is only needed for publishing.
+# Add GitHub Packages registry for @raullazaro (does not replace full ~/.npmrc).
+# Prefer dotbot-linked `npmrc` in this repo for security defaults.
 
 set -u
 
@@ -9,15 +8,23 @@ log()  { printf '[npm] %s\n' "$*"; }
 warn() { printf '[npm] WARNING: %s\n' "$*" >&2; }
 
 NPMRC="$HOME/.npmrc"
+MARKER="@raullazaro:registry="
 
-# Write ~/.npmrc — SSH handles auth for reads, no token needed
-cat > "$NPMRC" <<'EOF'
-# GitHub Packages — @raullazaro scope
-# Reads via SSH (no token needed), publish requires token with write:packages
+if [ ! -f "$NPMRC" ]; then
+  warn "~/.npmrc missing — run ./install in dotfiles first (links npmrc)"
+  exit 1
+fi
+
+if grep -q "$MARKER" "$NPMRC" 2>/dev/null; then
+  log "GitHub Packages registry already in $NPMRC"
+  exit 0
+fi
+
+cat >> "$NPMRC" <<'EOF'
+
+# GitHub Packages — @raullazaro scope (setup-npm-github-packages.sh)
 @raullazaro:registry=https://npm.pkg.github.com
-# For publishing, set token: npm config set //npm.pkg.github.com/:_authToken YOUR_TOKEN
+# For publishing: npm config set //npm.pkg.github.com/:_authToken YOUR_TOKEN
 EOF
 
-log "wrote $NPMRC with GitHub Packages registry"
-log "install: npm install @raullazaro/paper-cutout-shader (uses SSH)"
-log "publish: set token first with 'npm config set //npm.pkg.github.com/:_authToken YOUR_TOKEN'"
+log "appended GitHub Packages lines to $NPMRC"

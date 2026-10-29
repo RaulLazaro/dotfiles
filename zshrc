@@ -91,10 +91,8 @@ if command -v fnm >/dev/null; then
 	source <(fnm completions --shell zsh)
 fi
 
-if command -v corepack >/dev/null; then
-	corepack enable 2>/dev/null
-	npm() { command corepack npm "$@"; }
-fi
+# npm: use the CLI bundled with fnm's Node (10.9.x on Node 22). Do NOT wrap npm with
+# `corepack npm` — that often activates npm 11 and breaks package-lock.json vs deploy.
 
 # User configuration
 

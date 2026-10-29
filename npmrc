@@ -3,10 +3,10 @@
 @raullazaro:registry=https://npm.pkg.github.com
 # For publishing, set token: npm config set //npm.pkg.github.com/:_authToken YOUR_TOKEN
 
-# https://github.com/lirantal/npm-security-best-practices
-# allow-git and min-release-age need npm >= 11.10 (see README)
+# npm supply chain (https://github.com/lirantal/npm-security-best-practices)
+# Node 22: use bundled npm 10.9.x — same line as typical CI/deploy, not npm 11 via corepack.
 
 ignore-scripts=true
-allow-git=root
-min-release-age=7
 save-exact=true
+
+# allow-git=root and min-release-age need npm >= 11.10; skip until you standardize on npm 11 everywhere.

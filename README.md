@@ -80,18 +80,19 @@ Sourced from `zshenv` (every zsh), `profile` (login shells), and `bashrc` (inter
 ## Node.js (fnm) and npm
 
 Node versions are managed with [fnm](https://github.com/Schniz/fnm) (`fnm env --use-on-cd` in `zshrc`).
-`~/.npmrc` is symlinked from `npmrc` ([security defaults](https://github.com/lirantal/npm-security-best-practices)).
+`~/.npmrc` is symlinked from `npmrc` (`ignore-scripts`, `save-exact`; see [Liran Tal npm security best practices](https://github.com/lirantal/npm-security-best-practices)).
 
-`./install` runs `scripts/ensure-npm-corepack.sh`, which upgrades npm via corepack **only when**
-the bundled version is below **11.10** (`allow-git` / `min-release-age` need npm >= 11.10).
-Node 24+ already ships npm 11.x and is left untouched. `zshrc` runs `corepack enable` on shell
-startup.
+**Policy:** Node **22** + **npm 10.9.x** (bundled with Node — align lockfiles with CI/deploy).
+Do not wrap `npm` with `corepack npm` in `zshrc`. `./install` runs `scripts/ensure-npm-corepack.sh`,
+which on Node **22** leaves bundled **10.9.x** alone and re-pins **npm@10.9.3** only if npm **11** was
+activated previously. **Never** run `corepack disable npm` on Node 22 (it removes the `npm` binary).
 
 Check after install:
 
 ```zsh
 fnm use 22.22.0
-npm -v   # should be 11.x
+type npm    # should be a file under fnm, not a shell function
+npm -v      # → 10.9.x (not 11.x)
 ```
 
 ## Git identity (work vs personal)
